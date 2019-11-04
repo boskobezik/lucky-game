@@ -1,21 +1,20 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import HomePage from '../components/home/HomePage.vue';
-// eslint-disable-next-line import/no-unresolved
 import CountdownPage from '../components/shared/CountdownPage.vue';
+import LottoBall from '../components/shared/LottoBall.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: HomePage,
-  },
-  {
     path: '/countdown',
     name: 'Countdown',
     component: CountdownPage,
+  },
+  {
+    path: '/ball',
+    name: 'Ball',
+    component: LottoBall,
   },
 ];
 

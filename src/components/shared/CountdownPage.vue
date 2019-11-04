@@ -1,5 +1,6 @@
 <template>
-  <div class="background">
+  <div class="lb-background" style="margin: 4px 0 0 0;
+                                    padding: 20px 0 40px 0;">
     <div class="circle-wrap">
       <div class="circle">
         <div class="mask full">
@@ -24,8 +25,6 @@ export default {
 
 <style scoped>
 .background{
-  margin: 4px 0 0 0;
-  padding: 20px 0 40px 0;
   background: #286ED0;
 }
 .circle-wrap {
