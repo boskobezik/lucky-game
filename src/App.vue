@@ -6,9 +6,13 @@
       <h3>Lucky Game</h3>
     </div>
     <router-view />
-    <LottoBall style="display: inline-block;"/>
-    <LottoBall style="display: inline-block;"/>
-    <LottoBall style="display: inline-block;"/>
+    <LottoBall style="display: inline-block; padding: 25px 0 25px 0;"/>
+    <LottoBall style="display: inline-block; padding: 25px 0 25px 0;"/>
+    <LottoBall style="display: inline-block; padding: 25px 0 25px 0;"/>
+    <br>
+    <LottoBall style="display: inline-block; padding: 25px 0 25px 0;"/>
+    <LottoBall style="display: inline-block; padding: 25px 0 25px 0;"/>
+    <LottoBall style="display: inline-block; padding: 25px 0 25px 0;"/>
     <div class="footer"></div>
   </div>
 </template>

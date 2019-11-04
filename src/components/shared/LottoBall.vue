@@ -1,6 +1,6 @@
 <template>
-  <div>
-      <div class="ball">
+  <div class="lb-background">
+      <div class="ball ball-faded">
         <span class="ball-text-large">54</span>
       </div>
   </div>
@@ -15,13 +15,16 @@ export default {};
   border-radius: 100%;
   border: 4px solid #2386FA;
   box-shadow: 0 0 0 2px #0d2547;
-  margin: 2px;
   background: #0d2547;
   color: white;
   height: 200px;
   width: 200px;
-  padding: 50px;
+  margin: 2px;
   z-index: 100;
+}
+.ball-faded{
+    border: 0px;
+    opacity: 60%;
 }
 .ball-text-small {
   line-height: 6em;
