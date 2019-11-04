@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import CountdownPage from '../components/shared/CountdownPage.vue';
-import LottoBall from '../components/shared/LottoBall.vue';
+import GameScreen from '../components/shared/GameScreen.vue';
+import GameFooter from '../components/shared/GameFooter.vue';
 
 Vue.use(VueRouter);
 
@@ -12,9 +13,12 @@ const routes = [
     component: CountdownPage,
   },
   {
-    path: '/ball',
-    name: 'Ball',
-    component: LottoBall,
+    path: '/gameScreen',
+    name: 'GameScreen',
+    components: {
+      default: GameScreen,
+      gameFooter: GameFooter,
+    },
   },
 ];
 

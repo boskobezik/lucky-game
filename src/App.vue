@@ -2,38 +2,32 @@
   <div id="app">
     <div id="nav">
       <router-link to="/countdown">Countdown</router-link>|
-      <router-link to="/ball">Lotto ball</router-link>|
+      <router-link to="/gameScreen">Game screen</router-link>|
       <h3>Lucky Game</h3>
     </div>
-    <LottoBall :value="20" size="large"
-    style="display: inline-block; padding: 25px 0 25px 0;"/>
-    <LottoBall :value="20" size="small"
-    style="display: inline-block; padding: 25px 0 25px 0;"/>
-    <LottoBall :value="20" size="small" faded
-    style="display: inline-block; padding: 25px 0 25px 0;"/>
-    <div class="footer"></div>
+    <main class="lb-background">
+      <router-view />
+    </main>
+    <div class="footer">
+      <router-view name="gameFooter"/>
+    </div>
   </div>
 </template>
 
 <script>
-// import 'bootstrap/dist/css/bootstrap.css';
-import LottoBall from './components/shared/LottoBall.vue';
-
-export default {
-  components: { LottoBall },
-};
+export default {};
 </script>
 
 <style scoped>
 #app {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 #nav {
   padding: 10px;
-  background: #1F3047;
+  background: #1f3047;
   color: white;
   text-align: center;
 }
@@ -46,24 +40,40 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
-.footer{
-  height: 40px; width: auto;
+.footer {
+  height: 40px;
+  width: auto;
 }
 </style>
 
 <!-- GLOBAL STYLES -->
 <style>
 .header {
-    background: #1F3046;
+  background: #1f3046;
 }
 .footer {
-    background: #1F3046;
+  background: #1f3046;
 }
 .lb-background {
   /*border: 1px solid #2489ff;*/
-  background: #286ED0;
+  background: #286ed0;
 }
 .db-background {
-  background: #6899DE;
+  background: #6899de;
+}
+.pl-25 {
+  padding-left: 25px;
+}
+.pl-15 {
+  padding-left: 15px;
+}
+.inline-block {
+  display: inline-block;
+}
+/*----- Clearfix: Force an Element not to collapse -----*/
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div :class="getClasses">
-      <span :class="getTextClass">{{50}}</span>
+    <div class="ball" :class="getClasses">
+      <span :class="getTextClass">{{value || '[missing value]'}}</span>
     </div>
   </div>
 </template>
@@ -44,31 +44,33 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.ball{
+  margin: 10px 0px;
+  display: inline-block;
+}
 .ball-large {
   border-radius: 100%;
   border: 2px solid #2386fa;
-  box-shadow: 0 0 0 2px #0d2547;
+  box-shadow: 0 0 0 1px #0d2547;
   background: #0d2547;
   color: white;
   height: 125px;
   width: 125px;
-  margin: 2px;
   z-index: 100;
 }
 .ball-small {
   border-radius: 100%;
   border: 2px solid #2386fa;
-  box-shadow: 0 0 0 2px #0d2547;
+  box-shadow: 0 0 0 1px #0d2547;
   background: #0d2547;
   color: white;
   height: 40px;
   width: 40px;
-  margin: 2px;
   z-index: 100;
 }
 .ball-faded {
-  border: 0px;
+  border: 2px solid transparent;
   opacity: 60%;
 }
 .ball-text-small {
@@ -89,7 +91,7 @@ export default {
   margin: 0 auto;
 }
 .ball-text-large {
-  line-height: 2.1em;
+  line-height: 7.85rem;
   text-align: center;
   font-size: 3.75rem;
   width: 125px;

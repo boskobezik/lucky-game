@@ -1,6 +1,6 @@
 <template>
 <div>
-
+    <span>Game Footer!!!</span>
 </div>
 </template>
 
@@ -10,6 +10,8 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+span{
+    color: white;
+}
 </style>
