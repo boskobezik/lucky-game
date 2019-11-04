@@ -5,14 +5,12 @@
       <router-link to="/ball">Lotto ball</router-link>|
       <h3>Lucky Game</h3>
     </div>
-    <router-view />
-    <LottoBall style="display: inline-block; padding: 25px 0 25px 0;"/>
-    <LottoBall style="display: inline-block; padding: 25px 0 25px 0;"/>
-    <LottoBall style="display: inline-block; padding: 25px 0 25px 0;"/>
-    <br>
-    <LottoBall style="display: inline-block; padding: 25px 0 25px 0;"/>
-    <LottoBall style="display: inline-block; padding: 25px 0 25px 0;"/>
-    <LottoBall style="display: inline-block; padding: 25px 0 25px 0;"/>
+    <LottoBall :value="20" size="large"
+    style="display: inline-block; padding: 25px 0 25px 0;"/>
+    <LottoBall :value="20" size="small"
+    style="display: inline-block; padding: 25px 0 25px 0;"/>
+    <LottoBall :value="20" size="small" faded
+    style="display: inline-block; padding: 25px 0 25px 0;"/>
     <div class="footer"></div>
   </div>
 </template>

@@ -1,50 +1,99 @@
 <template>
-  <div class="lb-background">
-      <div class="ball ball-faded">
-        <span class="ball-text-large">54</span>
-      </div>
+  <div>
+    <div :class="getClasses">
+      <span :class="getTextClass">{{50}}</span>
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+
+export default {
+  props: {
+    size: {
+      type: String,
+      required: true,
+      validator: value => ['large', 'small'].includes(value),
+    },
+    faded: {
+      type: Boolean,
+      required: false,
+    },
+    value: {
+      type: Number,
+      required: true,
+    },
+  },
+  computed: {
+    getClasses() {
+      let classes = '';
+      classes += this.size === 'large' ? 'ball-large ' : 'ball-small ';
+      classes += this.faded ? 'ball-faded ' : '';
+
+      return classes;
+    },
+    getTextClass() {
+      let classes = '';
+      classes += this.size === 'large' ? 'ball-text-large ' : '';
+      classes += this.faded ? 'ball-text-small ' : '';
+      classes += classes === '' ? 'ball-text-medium' : '';
+
+      return classes;
+    },
+  },
+};
 </script>
 
 <style>
-.ball {
+.ball-large {
   border-radius: 100%;
-  border: 4px solid #2386FA;
+  border: 2px solid #2386fa;
   box-shadow: 0 0 0 2px #0d2547;
   background: #0d2547;
   color: white;
-  height: 200px;
-  width: 200px;
+  height: 125px;
+  width: 125px;
   margin: 2px;
   z-index: 100;
 }
-.ball-faded{
-    border: 0px;
-    opacity: 60%;
+.ball-small {
+  border-radius: 100%;
+  border: 2px solid #2386fa;
+  box-shadow: 0 0 0 2px #0d2547;
+  background: #0d2547;
+  color: white;
+  height: 40px;
+  width: 40px;
+  margin: 2px;
+  z-index: 100;
+}
+.ball-faded {
+  border: 0px;
+  opacity: 60%;
 }
 .ball-text-small {
-  line-height: 6em;
+  line-height: 2.5rem;
   text-align: center;
-  position: relative;
-  font-size: 2em;
-  margin: 0 0 0 41%;
+  font-size: 0.875rem;
+  width: 40px;
+  display: inline-block;
+  margin: 0 auto;
 }
 .ball-text-medium {
-  line-height: 3.1em;
+  line-height: 2.5rem;
   text-align: center;
-  position: relative;
-  font-size: 4em;
-  margin: 0 0 0 33%;
+  font-size: 1rem;
+  font-weight: 500;
+  width: 40px;
+  display: inline-block;
+  margin: 0 auto;
 }
 .ball-text-large {
   line-height: 2.1em;
   text-align: center;
-  position: relative;
-  font-size: 6em;
-  margin: 0 0 0 25%;
+  font-size: 3.75rem;
+  width: 125px;
+  display: inline-block;
+  margin: 0 auto;
 }
 </style>
