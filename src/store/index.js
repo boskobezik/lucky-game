@@ -19,6 +19,11 @@ export default new Vuex.Store({
     delayDrawTime: null,
   },
   mutations: {
+    setAll(state, data) {
+      Object.keys(data).forEach((key) => {
+        state[key] = data[key];
+      });
+    },
     setEventId(state, eventId) {
       state.eventId = eventId;
     },
@@ -55,8 +60,16 @@ export default new Vuex.Store({
     setDelayDrawTime(state, delayDrawTime) {
       state.delayDrawTime = delayDrawTime;
     },
+    addBall(state, ball) {
+      state.balls.push(ball);
+    },
   },
   actions: {
+
+  },
+  modules: {
+  },
+  getters: {
     allBalls(state) {
       return state.balls;
     },
@@ -66,7 +79,12 @@ export default new Vuex.Store({
     singleBall(state, id) {
       return state.balls.find(ball => ball.id === id);
     },
-  },
-  modules: {
+    getDelay(state) {
+      return state.delay;
+    },
+    getTest(state, id) {
+      console.log('getting id', id);
+      return id;
+    },
   },
 });

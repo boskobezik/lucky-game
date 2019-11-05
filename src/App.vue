@@ -18,8 +18,21 @@
 import axios from 'axios';
 import io from 'socket.io-client';
 
-function deepCopy(source) {
-  return JSON.parse(JSON.stringify(source));
+function makeRoutingDecision(dataType) {
+  switch (dataType) {
+    case 'countdown':
+      if (this.$router.currentRoute.name !== 'Countdown') {
+        this.$router.push('/countdown');
+      } break;
+
+    case 'gamescreen':
+    case 'ball':
+    case 'results':
+    default:
+      if (this.$router.currentRoute.name !== 'GameScreen') {
+        this.$router.push('/gameScreen');
+      } break;
+  }
 }
 
 export default {
@@ -46,16 +59,15 @@ export default {
           const { data } = res;
           switch (eventType) {
             case 'state':
+              this.$store.commit('setAll', data);
+              makeRoutingDecision.call(this, data.type);
               console.log('state: ', data);
-
-              this.$store.commit('setBalls', deepCopy(data.balls));
-              this.$store.commit('setOdds', deepCopy(data.odds));
-              console.log(this.$store.state.balls[0]);
               break;
             case 'new':
               console.log('new: ', data);
               break;
             case 'ball':
+              this.$store.commit('addBall', data);
               console.log('ball: ', data);
               break;
             case 'results':

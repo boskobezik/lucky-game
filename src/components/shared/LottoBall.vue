@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="ball" :class="getClasses">
-      <span :class="getTextClass">{{value || '[missing value]'}}</span>
+      <span :class="getTextClass">{{getValue}}</span>
     </div>
   </div>
 </template>
@@ -43,6 +43,13 @@ export default {
       classes += classes === '' ? 'ball-text-medium' : '';
 
       return classes;
+    },
+    getValue() {
+      const value = this.value.toString();
+      const difference = value.length - 3;
+      return value.length > 3
+        ? `${value.slice(0, difference)}.${value[difference]}k`
+        : value;
     },
   },
 };

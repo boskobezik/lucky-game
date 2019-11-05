@@ -11,7 +11,7 @@
           <div class="fill"></div>
         </div>
 
-        <div class="inside-circle">0:20</div>
+        <div class="inside-circle">{{getDelay || '...'}}</div>
       </div>
     </div>
   </div>
@@ -20,6 +20,24 @@
 <script>
 export default {
   name: 'CountdownPage',
+  props: {
+    delay: {
+      type: Number,
+      required: true,
+    },
+  },
+  computed: {
+    getDelay() {
+      const delay = this.$store.getters.getDelay;
+      const date = new Date(delay * 1000);
+      const minutes = date.getMinutes();
+      const seconds = date.getSeconds() > 9
+        ? date.getSeconds()
+        : `0${date.getSeconds()}`;
+
+      return `${minutes}:${seconds}`;
+    },
+  },
 };
 </script>
 
