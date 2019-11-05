@@ -41,7 +41,7 @@ export default {};
   color: #42b983;
 }
 .footer {
-  height: 40px;
+  height: 39px;
   width: auto;
 }
 </style>
@@ -69,11 +69,5 @@ export default {};
 }
 .inline-block {
   display: inline-block;
-}
-/*----- Clearfix: Force an Element not to collapse -----*/
-.clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
 }
 </style>

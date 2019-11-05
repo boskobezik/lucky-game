@@ -19,6 +19,9 @@ export default {
       type: Boolean,
       required: false,
     },
+    selected: {
+      type: Boolean,
+    },
     value: {
       type: Number,
       required: true,
@@ -29,6 +32,7 @@ export default {
       let classes = '';
       classes += this.size === 'large' ? 'ball-large ' : 'ball-small ';
       classes += this.faded ? 'ball-faded ' : '';
+      classes += this.selected ? 'ball-selected ' : '';
 
       return classes;
     },
@@ -72,6 +76,9 @@ export default {
 .ball-faded {
   border: 2px solid transparent;
   opacity: 60%;
+}
+.ball-selected{
+  background: #123565;
 }
 .ball-text-small {
   line-height: 2.5rem;
