@@ -15,7 +15,62 @@
 </template>
 
 <script>
-export default {};
+import axios from 'axios';
+import io from 'socket.io-client';
+
+function deepCopy(source) {
+  return JSON.parse(JSON.stringify(source));
+}
+
+export default {
+  created() {
+    const configUrl = 'https://gcm-fra-staging-1.7platform.com:8008/get-lb';
+    const query = 'token="token"&clientType="user"';
+    const channel = '1d0d6713-b7c9-4f07-ab23-3451a06e8989';
+    axios.get(configUrl).then((response) => {
+      const socketUrl = response.data.url;
+      const socket = io(socketUrl, { query });
+      socket.on('connect', () => {
+        socket.emit('subscribe', {
+          channel,
+          subChannels: {
+            language: 'en',
+            deliveryPlatform: 'Web',
+            playerUuid: null,
+          },
+        });
+      });
+      socket.on(channel, (res) => {
+        if (res) {
+          const eventType = res.type;
+          const { data } = res;
+          switch (eventType) {
+            case 'state':
+              console.log('state: ', data);
+
+              this.$store.commit('setBalls', deepCopy(data.balls));
+              this.$store.commit('setOdds', deepCopy(data.odds));
+              console.log(this.$store.state.balls[0]);
+              break;
+            case 'new':
+              console.log('new: ', data);
+              break;
+            case 'ball':
+              console.log('ball: ', data);
+              break;
+            case 'results':
+              console.log('results: ', data);
+              break;
+            case 'countdown':
+              console.log('countdown: ', data);
+              break;
+            default: break;
+          }
+        }
+      });
+    });
+  },
+};
 </script>
 
 <style scoped>
