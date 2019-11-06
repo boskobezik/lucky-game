@@ -3,15 +3,15 @@
  * @author buddhacatmonk@gmail.com (Boško Bezik)
  */
 <template>
-  <div id="app">
+  <div id="app" class="fade-in">
     <div id="nav">
-      <h3>Lucky Game ({{getCurrentEventType}})</h3>
+      <h3>Lucky Game {{getCurrentEventType}}</h3>
     </div>
     <main class="lb-background">
       <router-view />
     </main>
     <div class="footer">
-      <router-view name="gameFooter"/>
+      <router-view name="gameFooter" />
     </div>
   </div>
 </template>
@@ -27,10 +27,13 @@ import io from 'socket.io-client';
 function makeRoutingDecision(dataType) {
   switch (dataType) {
     case 'countdown':
-      if (this.$router.currentRoute.name !== 'Countdown'
-      || !this.$router.currentRoute.name) {
+      if (
+        this.$router.currentRoute.name !== 'Countdown'
+        || !this.$router.currentRoute.name
+      ) {
         this.$router.push('/countdown');
-      } break;
+      }
+      break;
 
     case 'gamescreen':
     case 'ball':
@@ -38,7 +41,8 @@ function makeRoutingDecision(dataType) {
     default:
       if (this.$router.currentRoute.name !== 'GameScreen') {
         this.$router.push('/gameScreen');
-      } break;
+      }
+      break;
   }
 }
 
@@ -113,7 +117,8 @@ export default {
               makeRoutingDecision.call(this, eventType);
               // console.log('countdown: ', data);
               break;
-            default: break;
+            default:
+              break;
           }
         }
       });
@@ -123,7 +128,7 @@ export default {
     getCurrentEventType() {
       const temp = this.$store.state.currentEventType;
       if (temp) {
-        return temp.charAt(0).toUpperCase() + temp.slice(1);
+        return `(${temp.charAt(0).toUpperCase() + temp.slice(1)})`;
       }
       return '';
     },
@@ -183,5 +188,20 @@ export default {
 }
 .inline-block {
   display: inline-block;
+}
+.fade-in {
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: .5s;
+}
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 </style>
