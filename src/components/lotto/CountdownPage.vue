@@ -1,3 +1,8 @@
+/**
+ * @fileoverview Countdown page component. Renders a circle
+ * progress bar representing the remaining time until the next round starts.
+ * @author buddhacatmonk@gmail.com (Boško Bezik)
+ */
 <template>
   <div class="lb-background" style="margin: 4px 0 0 0;
                                     padding: 20px 0 40px 0;"
@@ -10,11 +15,9 @@
         <div class="mask full">
           <div class="fill"></div>
         </div>
-
         <div class="mask half">
           <div class="fill"></div>
         </div>
-
         <div class="inside-circle">{{getDelay}}</div>
       </div>
     </div>
@@ -55,6 +58,10 @@ export default {
 .background{
   background: #286ED0;
 }
+
+/*
+* Circle progress bar styles I stole from the internet :/
+*/
 .circle-wrap {
   margin: 0px auto;
   width: 150px;

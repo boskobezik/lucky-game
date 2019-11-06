@@ -1,3 +1,7 @@
+/**
+ * @fileoverview Vuex store configuration file.
+ * @author buddhacatmonk@gmail.com (Boško Bezik)
+ */
 import Vue from 'vue';
 import Vuex from 'vuex';
 
@@ -19,6 +23,9 @@ export default new Vuex.Store({
     delayDrawTime: null,
     intervalInstances: [],
     overUnder: 0,
+    evenNumbersCount: 0,
+    oddNumbersCount: 0,
+    currentEventType: null,
   },
   mutations: {
     setAll(state, data) {
@@ -104,8 +111,35 @@ export default new Vuex.Store({
       }
       state.overUnder = sum;
     },
+    updateEvenOddNumbersCount(state) {
+      state.evenNumbersCount = state.balls.filter(b => b.ball % 2 === 0).length;
+      state.oddNumbersCount = state.balls.filter(b => b.ball % 2 !== 0).length;
+    },
+    clearState(state) {
+      state.eventId = null;
+      state.balls = [];
+      state.bonusBalls = [];
+      state.type = null;
+      state.delay = null;
+      state.eventIdToday = null;
+      state.odds = [];
+      state.specialOdds = [];
+      state.bonusType = null;
+      state.time = null;
+      state.delayResultTime = null;
+      state.delayDrawTime = null;
+      state.overUnder = 0;
+      state.evenNumbersCount = 0;
+      state.oddNumbersCount = 0;
+      // We don't clear the intervalInstance state because
+      // we need to keep track of active countdown interval instances.
+    },
+    setCurrentEventType(state, evtType) {
+      state.currentEventType = evtType;
+    },
   },
   actions: {
+    // NOTE: We add async API calls here.
   },
   modules: {
   },

@@ -1,3 +1,8 @@
+/**
+ * @fileoverview Lotto ball component. Represents a lotto ball.
+ * Can be small or large, also can be faded.
+ * @author buddhacatmonk@gmail.com (Boško Bezik)
+ */
 <template>
   <div>
     <div class="ball" :class="getClasses">

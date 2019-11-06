@@ -1,3 +1,7 @@
+/**
+ * @fileoverview Game screen component. Most of the 'action' gets displayed here,
+ * @author buddhacatmonk@gmail.com (Boško Bezik)
+ */
 <template>
   <div>
     <div class="grid">
@@ -45,10 +49,13 @@
 </template>
 
 <script>
-import LottoBall from './LottoBall.vue';
+import LottoBall from '../shared/LottoBall.vue';
 
 export default {
   created() {
+    // We first fill in the placeholder/odds values.
+    // They will be replaced with new ball values
+    // we receive from the socket connection
     const placeholders = this.$store.state.odds;
     this.column1 = placeholders.slice(0, 5);
     this.column2 = placeholders.slice(5, 10);
@@ -85,6 +92,10 @@ export default {
 </script>
 
 <style scoped>
+/*
+* I thought about doing this using Bootstrap grids (because compatibility),
+* but decided it way overkill for this. So I went with CSS grids.
+*/
 .grid {
   display: grid;
   grid-template-columns: .5fr .5fr .5fr 1fr .5fr .5fr .5fr;

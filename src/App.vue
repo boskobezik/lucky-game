@@ -1,11 +1,11 @@
+/**
+ * @fileoverview Main component of the app. Wraps all other components.
+ * @author buddhacatmonk@gmail.com (Boško Bezik)
+ */
 <template>
   <div id="app">
     <div id="nav">
-      <!--
-      <router-link to="/countdown">Countdown</router-link>|
-      <router-link to="/gameScreen">Game screen</router-link>|
-      -->
-      <h3>Lucky Game</h3>
+      <h3>Lucky Game ({{getCurrentEventType}})</h3>
     </div>
     <main class="lb-background">
       <router-view />
@@ -20,6 +20,10 @@
 import axios from 'axios';
 import io from 'socket.io-client';
 
+/**
+ * Decide which route to take.
+ * @param {string} dataType Data type, decided which route to push.
+ */
 function makeRoutingDecision(dataType) {
   switch (dataType) {
     case 'countdown':
@@ -40,6 +44,8 @@ function makeRoutingDecision(dataType) {
 
 export default {
   created() {
+    // Not much going on here, I've copy/pasted the connection sample
+    // given in the specification file.
     const configUrl = 'https://gcm-fra-staging-1.7platform.com:8008/get-lb';
     const query = 'token="token"&clientType="user"';
     const channel = '1d0d6713-b7c9-4f07-ab23-3451a06e8989';
@@ -59,45 +65,68 @@ export default {
       socket.on(channel, (res) => {
         if (res) {
           const eventType = res.type;
+          this.$store.commit('setCurrentEventType', eventType);
           const { data } = res;
           switch (eventType) {
             case 'state':
+              // We commit all the recieved data upon receiving the 'state' event type.
               this.$store.commit('setAll', data);
               makeRoutingDecision.call(this, data.type);
               if (data.type === 'ball') {
                 this.$store.commit('replacePlaceholders', data.balls);
               }
               this.$store.commit('updateOverUnder');
-              console.log('state: ', data);
+              this.$store.commit('updateEvenOddNumbersCount');
+              // console.log('state: ', data);
               break;
             case 'new':
+              // We set placeholders/odds upon receiving the 'new' event type.
               this.$store.commit('setOdds', data.odds);
               this.$store.commit('updateOverUnder');
+              this.$store.commit('updateEvenOddNumbersCount');
               makeRoutingDecision.call(this, eventType);
-              console.log('new: ', data);
+              // console.log('new: ', data);
               break;
             case 'ball':
+              // We add and replace the newly received ball upon
+              // receiving the 'ball' event type.
               this.$store.commit('addBall', data);
               this.$store.commit('replacePlaceholder', data);
               this.$store.commit('updateOverUnder');
+              this.$store.commit('updateEvenOddNumbersCount');
               makeRoutingDecision.call(this, eventType);
-              console.log('ball: ', data);
+              // console.log('ball: ', data);
               break;
             case 'results':
+              // We replace all odds with balls drawn during the match
+              // upon receiving the 'results' event type.
               this.$store.commit('replacePlaceholders', data.balls);
               this.$store.commit('updateOverUnder');
+              this.$store.commit('updateEvenOddNumbersCount');
               makeRoutingDecision.call(this, eventType);
-              console.log('results: ', data);
+              // console.log('results: ', data);
               break;
             case 'countdown':
+              // We switch to the CountdownScreen component
+              // upon receiving the 'countdown' message.
+              this.$store.commit('clearState');
               makeRoutingDecision.call(this, eventType);
-              console.log('countdown: ', data);
+              // console.log('countdown: ', data);
               break;
             default: break;
           }
         }
       });
     });
+  },
+  computed: {
+    getCurrentEventType() {
+      const temp = this.$store.state.currentEventType;
+      if (temp) {
+        return temp.charAt(0).toUpperCase() + temp.slice(1);
+      }
+      return '';
+    },
   },
 };
 </script>
@@ -130,8 +159,8 @@ export default {
 }
 </style>
 
-<!-- GLOBAL STYLES -->
 <style>
+/* Mockup defined styles */
 .header {
   background: #1f3046;
 }
@@ -139,12 +168,13 @@ export default {
   background: #1f3046;
 }
 .lb-background {
-  /*border: 1px solid #2489ff;*/
   background: #286ed0;
 }
 .db-background {
   background: #6899de;
 }
+/** mockup defined styles **/
+
 .pl-25 {
   padding-left: 25px;
 }

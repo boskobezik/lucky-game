@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Game footer component. Gets rendered only on the GameScreen component.
+ * Displays 'over under' which represents the sum of first five drawn balls and
+ * in the bottom right it tracks the number of even/odd drawn ball numbers.
+ * @author buddhacatmonk@gmail.com (Boško Bezik)
+ */
 <template>
   <div>
     <div class="grid">
@@ -14,13 +20,13 @@
       <div class="nested-3">
           <div class="nested-3-child">
               <span style="width: 25px;">Even</span>
-              <progress value="34" max="100"></progress>
-              <span>34</span>
+              <progress :value="getEvenNumbersCount" max="35"></progress>
+              <span>{{getEvenNumbersCount}}</span>
           </div>
           <div class="nested-3-child">
               <span style="width: 25px;">Odd</span>
-              <progress value="76" max="100"></progress>
-              <span>76</span>
+              <progress :value="getOddNumbersCount" max="35"></progress>
+              <span>{{getOddNumbersCount}}</span>
           </div>
       </div>
     </div>
@@ -32,6 +38,12 @@ export default {
   computed: {
     getOverUnder() {
       return this.$store.state.overUnder;
+    },
+    getEvenNumbersCount() {
+      return this.$store.state.evenNumbersCount;
+    },
+    getOddNumbersCount() {
+      return this.$store.state.oddNumbersCount;
     },
   },
 };
