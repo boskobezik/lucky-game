@@ -3,7 +3,7 @@
     <div class="grid">
       <!-- COLUMN 1 -->
       <div>
-        <LottoBall v-for="(value) in column1"
+        <LottoBall v-for="(value) in column1" :faded="Object.keys(value)[1] === 'ball'"
                    :value="value.odds" size="small" :key="value.id"/>
       </div>
       <!-- COLUMN 2 -->
@@ -21,8 +21,7 @@
         <LottoBall v-for="(value) in row"
                    :value="value.odds" size="small" :key="value.id"/>
         <div class="nested-big-ball">
-            <LottoBall
-            :value="this.$store.state.balls[this.$store.state.balls.length-1].ball" size="large" />
+            <LottoBall :value="getBigBall" size="large" />
         </div>
       </div>
       <!-- COLUMN 4 -->
@@ -72,6 +71,15 @@ export default {
       column6: [],
       bigBall: 0,
     };
+  },
+  computed: {
+    getBigBall() {
+      const bigBall = this.$store.state.balls[this.$store.state.balls.length - 1]
+        ? this.$store.state.balls[this.$store.state.balls.length - 1].ball
+        : 0;
+
+      return bigBall;
+    },
   },
 };
 </script>

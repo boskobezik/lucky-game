@@ -20,12 +20,6 @@
 <script>
 export default {
   name: 'CountdownPage',
-  props: {
-    delay: {
-      type: Number,
-      required: true,
-    },
-  },
   computed: {
     getDelay() {
       const delay = this.$store.getters.getDelay;
@@ -69,7 +63,6 @@ export default {
 .circle-wrap .circle .mask.full,
 .circle-wrap .circle .fill {
   animation: fill ease-in-out 3s;
-  transform: rotate(0deg);
 }
 
 @keyframes fill {
@@ -80,6 +73,7 @@ export default {
     transform: rotate(0deg);
   }
 }
+
 .circle-wrap .inside-circle {
   width: 142px;
   height: 142px;

@@ -61,19 +61,30 @@ export default {
             case 'state':
               this.$store.commit('setAll', data);
               makeRoutingDecision.call(this, data.type);
+              if (data.type === 'ball') {
+                this.$store.commit('replacePlaceholders', data.balls);
+              }
               console.log('state: ', data);
               break;
             case 'new':
+              this.$store.commit('setOdds', data.odds);
+              makeRoutingDecision.call(this, data.type);
               console.log('new: ', data);
               break;
             case 'ball':
               this.$store.commit('addBall', data);
+              this.$store.commit('replacePlaceholder', data);
+              console.log(this.$store.state.odds);
+              makeRoutingDecision.call(this, data.type);
               console.log('ball: ', data);
               break;
             case 'results':
+              this.$store.commit('replacePlaceholders', data.balls);
+              makeRoutingDecision.call(this, data.type);
               console.log('results: ', data);
               break;
             case 'countdown':
+              makeRoutingDecision.call(this, data.type);
               console.log('countdown: ', data);
               break;
             default: break;

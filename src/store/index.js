@@ -63,28 +63,32 @@ export default new Vuex.Store({
     addBall(state, ball) {
       state.balls.push(ball);
     },
+    replacePlaceholder(state, ball) {
+      const odds = state.odds[ball.id - 1];
+      odds.id = ball.id;
+      odds.odds = ball.ball;
+      odds.faded = true;
+    },
+    replacePlaceholders(state, balls) {
+      for (let i = 0; i < state.balls.length; i += 1) {
+        const odds = state.odds[i];
+        const ball = balls[i];
+        odds.id = ball.id;
+        odds.odds = ball.ball;
+        odds.faded = true;
+      }
+    },
   },
   actions: {
-
   },
   modules: {
   },
   getters: {
-    allBalls(state) {
-      return state.balls;
-    },
     allOdds(state) {
       return state.odds;
     },
-    singleBall(state, id) {
-      return state.balls.find(ball => ball.id === id);
-    },
     getDelay(state) {
       return state.delay;
-    },
-    getTest(state, id) {
-      console.log('getting id', id);
-      return id;
     },
   },
 });
