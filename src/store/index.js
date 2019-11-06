@@ -17,6 +17,7 @@ export default new Vuex.Store({
     time: null,
     delayResultTime: null,
     delayDrawTime: null,
+    intervalInstances: [],
   },
   mutations: {
     setAll(state, data) {
@@ -65,18 +66,35 @@ export default new Vuex.Store({
     },
     replacePlaceholder(state, ball) {
       const odds = state.odds[ball.id - 1];
-      odds.id = ball.id;
-      odds.odds = ball.ball;
-      odds.faded = true;
+      if (odds) {
+        // Check avoids potential TypeError
+        odds.id = ball.id;
+        odds.odds = ball.ball;
+        odds.faded = true;
+      }
     },
     replacePlaceholders(state, balls) {
       for (let i = 0; i < state.balls.length; i += 1) {
         const odds = state.odds[i];
         const ball = balls[i];
-        odds.id = ball.id;
-        odds.odds = ball.ball;
-        odds.faded = true;
+        if (odds && ball) {
+          // Check avoids potential TypeError
+          odds.id = ball.id;
+          odds.odds = ball.ball;
+        }
       }
+    },
+    decrementDelay(state) {
+      state.delay -= 1;
+    },
+    setIntervalInstance(state, instance) {
+      // We clear out all existing instances to avoid
+      // more than one running concurrently in the background
+      state.intervalInstances.forEach((i) => {
+        clearInterval(i);
+      });
+      state.intervalInstances = [];
+      state.intervalInstances.push(instance);
     },
   },
   actions: {

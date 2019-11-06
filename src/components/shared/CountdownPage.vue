@@ -1,6 +1,10 @@
 <template>
   <div class="lb-background" style="margin: 4px 0 0 0;
-                                    padding: 20px 0 40px 0;">
+                                    padding: 20px 0 40px 0;"
+       :style="{
+         // We create a CSS variable to capture the remaining countdown time
+         '--delay': Math.abs(this.$store.state.delay) + 's'
+         }">
     <div class="circle-wrap">
       <div class="circle">
         <div class="mask full">
@@ -11,7 +15,7 @@
           <div class="fill"></div>
         </div>
 
-        <div class="inside-circle">{{getDelay || '...'}}</div>
+        <div class="inside-circle">{{getDelay}}</div>
       </div>
     </div>
   </div>
@@ -19,16 +23,28 @@
 
 <script>
 export default {
+  created() {
+    // Fake countdown timer. The delay time
+    // returned by the socket isn't updated so I faked my own delay.
+    this.$store.commit('setIntervalInstance', setInterval(() => {
+      this.$store.commit('decrementDelay');
+      if (this.$store.state.delay < 1) {
+        this.$store.commit('setDelay', 142);
+      }
+    }, 1000));
+  },
   name: 'CountdownPage',
   computed: {
     getDelay() {
       const delay = this.$store.getters.getDelay;
+      // Convert delay to miliseconds and create new Date object
       const date = new Date(delay * 1000);
-      const minutes = date.getMinutes();
-      const seconds = date.getSeconds() > 9
+      const minutes = date.getMinutes(); // Extract minutes
+      const seconds = date.getSeconds() > 9 // Extract seconds
         ? date.getSeconds()
         : `0${date.getSeconds()}`;
 
+      // Return delay formatted as "mm:ss"
       return `${minutes}:${seconds}`;
     },
   },
@@ -62,9 +78,10 @@ export default {
 }
 .circle-wrap .circle .mask.full,
 .circle-wrap .circle .fill {
-  animation: fill ease-in-out 3s;
+  /* --delay is declared on the style attribute of the parent element */
+  animation: fill ease-in-out var(--delay);
+  transform: rotate(0deg);
 }
-
 @keyframes fill {
   0% {
     transform: rotate(180deg);
@@ -73,7 +90,6 @@ export default {
     transform: rotate(0deg);
   }
 }
-
 .circle-wrap .inside-circle {
   width: 142px;
   height: 142px;

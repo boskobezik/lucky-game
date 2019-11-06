@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <div id="nav">
+      <!--
       <router-link to="/countdown">Countdown</router-link>|
       <router-link to="/gameScreen">Game screen</router-link>|
+      -->
       <h3>Lucky Game</h3>
     </div>
     <main class="lb-background">
@@ -21,7 +23,8 @@ import io from 'socket.io-client';
 function makeRoutingDecision(dataType) {
   switch (dataType) {
     case 'countdown':
-      if (this.$router.currentRoute.name !== 'Countdown') {
+      if (this.$router.currentRoute.name !== 'Countdown'
+      || !this.$router.currentRoute.name) {
         this.$router.push('/countdown');
       } break;
 
@@ -68,23 +71,22 @@ export default {
               break;
             case 'new':
               this.$store.commit('setOdds', data.odds);
-              makeRoutingDecision.call(this, data.type);
+              makeRoutingDecision.call(this, eventType);
               console.log('new: ', data);
               break;
             case 'ball':
               this.$store.commit('addBall', data);
               this.$store.commit('replacePlaceholder', data);
-              console.log(this.$store.state.odds);
-              makeRoutingDecision.call(this, data.type);
+              makeRoutingDecision.call(this, eventType);
               console.log('ball: ', data);
               break;
             case 'results':
               this.$store.commit('replacePlaceholders', data.balls);
-              makeRoutingDecision.call(this, data.type);
+              makeRoutingDecision.call(this, eventType);
               console.log('results: ', data);
               break;
             case 'countdown':
-              makeRoutingDecision.call(this, data.type);
+              makeRoutingDecision.call(this, eventType);
               console.log('countdown: ', data);
               break;
             default: break;

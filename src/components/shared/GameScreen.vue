@@ -3,7 +3,7 @@
     <div class="grid">
       <!-- COLUMN 1 -->
       <div>
-        <LottoBall v-for="(value) in column1" :faded="Object.keys(value)[1] === 'ball'"
+        <LottoBall v-for="(value) in column1"
                    :value="value.odds" size="small" :key="value.id"/>
       </div>
       <!-- COLUMN 2 -->
