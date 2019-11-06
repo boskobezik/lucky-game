@@ -18,6 +18,7 @@ export default new Vuex.Store({
     delayResultTime: null,
     delayDrawTime: null,
     intervalInstances: [],
+    overUnder: 0,
   },
   mutations: {
     setAll(state, data) {
@@ -70,7 +71,6 @@ export default new Vuex.Store({
         // Check avoids potential TypeError
         odds.id = ball.id;
         odds.odds = ball.ball;
-        odds.faded = true;
       }
     },
     replacePlaceholders(state, balls) {
@@ -95,6 +95,14 @@ export default new Vuex.Store({
       });
       state.intervalInstances = [];
       state.intervalInstances.push(instance);
+    },
+    updateOverUnder(state) {
+      const firstFiveBalls = state.balls.slice(0, 5);
+      let sum = 0;
+      for (let i = 0; i < firstFiveBalls.length; i += 1) {
+        sum += firstFiveBalls[i].ball;
+      }
+      state.overUnder = sum;
     },
   },
   actions: {

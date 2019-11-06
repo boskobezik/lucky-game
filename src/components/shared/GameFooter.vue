@@ -8,7 +8,9 @@
         </span>
         <span>UNDER</span>
       </div>
-      <div class="nested-2">86</div>
+      <div class="nested-2">
+        {{getOverUnder}}
+        </div>
       <div class="nested-3">
           <div class="nested-3-child">
               <span style="width: 25px;">Even</span>
@@ -26,7 +28,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    getOverUnder() {
+      return this.$store.state.overUnder;
+    },
+  },
+};
 </script>
 
 <style scoped>

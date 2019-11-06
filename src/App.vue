@@ -67,21 +67,25 @@ export default {
               if (data.type === 'ball') {
                 this.$store.commit('replacePlaceholders', data.balls);
               }
+              this.$store.commit('updateOverUnder');
               console.log('state: ', data);
               break;
             case 'new':
               this.$store.commit('setOdds', data.odds);
+              this.$store.commit('updateOverUnder');
               makeRoutingDecision.call(this, eventType);
               console.log('new: ', data);
               break;
             case 'ball':
               this.$store.commit('addBall', data);
               this.$store.commit('replacePlaceholder', data);
+              this.$store.commit('updateOverUnder');
               makeRoutingDecision.call(this, eventType);
               console.log('ball: ', data);
               break;
             case 'results':
               this.$store.commit('replacePlaceholders', data.balls);
+              this.$store.commit('updateOverUnder');
               makeRoutingDecision.call(this, eventType);
               console.log('results: ', data);
               break;

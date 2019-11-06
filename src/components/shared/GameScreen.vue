@@ -3,41 +3,41 @@
     <div class="grid">
       <!-- COLUMN 1 -->
       <div>
-        <LottoBall v-for="(value) in column1"
-                   :value="value.odds" size="small" :key="value.id"/>
+        <LottoBall v-for="(odds) in column1" :faded="odds.odds === odds.id"
+                   :value="odds.odds" size="small" :key="odds.id"/>
       </div>
       <!-- COLUMN 2 -->
       <div>
-        <LottoBall v-for="(value) in column2"
-                   :value="value.odds" size="small" :key="value.id"/>
+        <LottoBall v-for="(odds) in column2" :faded="odds.odds === odds.id"
+                   :value="odds.odds" size="small" :key="odds.id"/>
       </div>
       <!-- COLUMN 3 -->
       <div>
-        <LottoBall v-for="(value) in column3"
-                   :value="value.odds" size="small" :key="value.id"/>
+        <LottoBall v-for="(odds) in column3" :faded="odds.odds === odds.id"
+                   :value="odds.odds" size="small" :key="odds.id"/>
       </div>
       <!-- ROW -->
       <div class="nested" style="margin: 0 35px;">
-        <LottoBall v-for="(value) in row"
-                   :value="value.odds" size="small" :key="value.id"/>
+        <LottoBall v-for="(odds) in row" :faded="odds.odds === odds.id"
+                   :value="odds.odds" size="small" :key="odds.id"/>
         <div class="nested-big-ball">
             <LottoBall :value="getBigBall" size="large" />
         </div>
       </div>
       <!-- COLUMN 4 -->
       <div>
-        <LottoBall v-for="(value) in column4"
-                   :value="value.odds" size="small" :key="value.id"/>
+        <LottoBall v-for="(odds) in column4" :faded="odds.odds === odds.id"
+                   :value="odds.odds" size="small" :key="odds.id"/>
       </div>
       <!-- COLUMN 5 -->
       <div>
-        <LottoBall v-for="(value) in column5"
-                   :value="value.odds" size="small" :key="value.id"/>
+        <LottoBall v-for="(odds) in column5" :faded="odds.odds === odds.id"
+                   :value="odds.odds" size="small" :key="odds.id"/>
       </div>
       <!-- COLUMN 6 -->
       <div>
-        <LottoBall v-for="(value) in column6"
-                   :value="value.odds" size="small" :key="value.id"/>
+        <LottoBall v-for="(odds) in column6" :faded="odds.odds === odds.id"
+                   :value="odds.odds" size="small" :key="odds.id"/>
       </div>
     </div>
 
