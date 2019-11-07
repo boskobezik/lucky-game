@@ -1,4 +1,4 @@
-## Welcome to the Lucky Game repository!
+# Welcome to the Lucky Game repository!
 #### This is an interview project for <img alt="nSoft" src="https://spark.ba/wp-content/uploads/2017/12/Nsoft_logo_2017-2.png" width="42">.
 For documentation I recommend you to take a look at the project <a href="https://github.com/boskobezik/lucky-game/wiki">**WIKI**</a>
 
