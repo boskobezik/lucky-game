@@ -1,25 +1,25 @@
 # Lucky Game
 #### Interview project for <img alt="nSoft" src="https://spark.ba/wp-content/uploads/2017/12/Nsoft_logo_2017-2.png" width="42">.
 
-### Welcome to the Lucky Game repository!
+## Welcome to the Lucky Game repository!
 For documentation I recommend you to take a look at the project <a href="https://github.com/boskobezik/lucky-game/wiki">**WIKI**</a>
 
 Lucky Game is a Single Page Application (SPA) created using the **Vue CLI 4.x**. My editor of choice was **Visual Studio Code**.
 
-### How to build and run:
+## <img src="https://cdn1.iconfinder.com/data/icons/material-core/20/settings-32.png" width="32"/> How to build and run:
 After downloading the repo, navigate to it's directory with your favorite command line utility.
 
-Before doing anything, run `npm install` to restore dependencies.
+`npm install` to restore dependencies.
 
-To debug, run `npm run serve` to host and run locally.
+`npm run serve` to host and run locally in debug mode.
 
-To build for production, run: `set NODE_ENV=production` then `npm run build`.
+`set NODE_ENV=production` then `npm run build` to build for production.
 
-To unit test, run `npm run test:unit`.
+`npm run test:unit` to run tests.
 
 **NOTE**: The linter won't allow you to compile if any of it's rules are broken. Try running `npm run lint`.
 
-### Description:
+## Description:
 
 Before starting work on this, I had to learn Vue.js. I've quickly finished a course on Pluralsight called "Vue.js Fundamentals" and this got me started. It took me 4 days to get the basics right.
 
