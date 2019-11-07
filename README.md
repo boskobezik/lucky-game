@@ -19,10 +19,10 @@ After downloading the repo, navigate to it's directory with your favorite comman
 
 ## <img src="https://cdn1.iconfinder.com/data/icons/material-core/22/visibility-32.png" width="32"/> Description:
 
-Before starting work on this, I had to learn Vue.js. I've quickly finished a course on Pluralsight called "Vue.js Fundamentals" and this got me started. It took me 4 days to get the basics right.
+Before starting work on this, I had to learn Vue.js. I've quickly finished a course on Pluralsight called "Vue.js Fundamentals". It took me four days to get started working on this assignment.
 
-The next day I've created the components based off the provided mockups. After that I connected the app to the socket with the handy snippet you left me. I started to utilize the Vuex store to manage my state. It didn't take me long to wrap everyhing up.
+I started by creating the components based off the provided mockups. After that I connected the app to the web socket with the snippet I was given in the assignment document. I used Vuex store to manage my state and Vue Router to manage navigation.
 
 I don't know if this is intentional but I've noticed that the socket connection always returns the same data and the countdown time never gets updated.
 
-That's it. I hope you like it :)
+That's about it.
