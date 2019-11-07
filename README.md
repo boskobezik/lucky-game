@@ -15,7 +15,7 @@ After downloading the repo, navigate to it's directory with your favorite comman
 
 <img src="https://cdn1.iconfinder.com/data/icons/material-core/20/check-circle-outline-16.png" width="12"/>  `npm run test:unit` to run tests.
 
-<img src="https://cdn1.iconfinder.com/data/icons/material-core/20/error-16.png" width="12"/>  **NOTE**: The linter won't allow you to compile if any of it's rules are broken. Try running `npm run lint`.
+**NOTE**: The linter won't allow you to compile if any of it's rules are broken. Try running `npm run lint`.
 
 ## <img src="https://cdn1.iconfinder.com/data/icons/material-core/22/visibility-32.png" width="32"/> Description:
 
